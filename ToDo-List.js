@@ -9,12 +9,19 @@
 const todoList = [];
 
 function addToDo(){
-  // get the text in the text box
+  //2: get the text in the text box
   const inputElement = document.querySelector('.js-name-input');
 
-  // get the text out
+  //3: get the text out
   const name =inputElement.value;
-  console.log(name);
+  
+  // add it to the array
+  todoList.push(name);
+
+  console.log(todoList);
+
+  // reset the text box
+  inputElement.value = empty = '';
 
 
 }
