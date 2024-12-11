@@ -6,8 +6,25 @@
 */
 
 //1: create array to store todos
-const todoList = [];
+const todoList = ['make dinner', 'wash dishes'];
+renderToDoList();
+function renderToDoList(){
+//accumulater pattern
+  let todoListHTML = '';
 
+
+  // loop thorugh each index of the array
+  for(let i=0; i < todoList.length; i++){
+    const todo = todoList[i];
+    const html = `<p>${todo}</p>`;
+    todoListHTML += html;
+  }
+  console.log(todoListHTML);
+
+  // get the div element from html and put it inside the javascript
+  document.querySelector('.js-todo-list').innerHTML = todoListHTML;
+
+  }
 function addToDo(){
   //2: get the text in the text box
   const inputElement = document.querySelector('.js-name-input');
@@ -21,7 +38,7 @@ function addToDo(){
   console.log(todoList);
 
   // reset the text box
-  inputElement.value = empty = '';
-
+  inputElement.value   = '';
+renderToDoList();
 
 }
