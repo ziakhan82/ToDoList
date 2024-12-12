@@ -6,7 +6,14 @@
 */
 
 //1: create array to store todos
-const todoList = ['make dinner', 'wash dishes'];
+const todoList = [{
+  name: 'make dinner',
+  dueDate: '2022-12-22'
+  },
+  {
+  name:'wash dishes',
+  dueDate: '2022-12-22'
+}];
 renderToDoList();
 function renderToDoList(){
 //accumulater pattern
@@ -15,11 +22,22 @@ function renderToDoList(){
 
   // loop thorugh each index of the array
   for(let i=0; i < todoList.length; i++){
-    const todo = todoList[i];
-    const html = `<p>${todo}</p>`;
+    const todoObject = todoList[i];
+    const name = todoObject.name;
+    const dueDate = todoObject.dueDate;
+    // we can use the short called destructing
+   // const {name, dueDate} = todoObject;
+
+    const html = `
+    <div>${name}</div>
+     <div>${dueDate}</div>
+     <button onClick="
+     todoList.splice(${i}, 1);
+     renderToDoList();
+     " class = "delete-todo-button">Delete</button>`;
     todoListHTML += html;
   }
-  console.log(todoListHTML);
+ 
 
   // get the div element from html and put it inside the javascript
   document.querySelector('.js-todo-list').innerHTML = todoListHTML;
@@ -31,11 +49,17 @@ function addToDo(){
 
   //3: get the text out
   const name =inputElement.value;
+
+  const dateInputElement = document.querySelector('.js-due-date-input');
+
+  const dueDate = dateInputElement.value;
   
   // add it to the array
-  todoList.push(name);
+  todoList.push({
+    name: name,
+    dueDate :dueDate
+  });
 
-  console.log(todoList);
 
   // reset the text box
   inputElement.value   = '';
